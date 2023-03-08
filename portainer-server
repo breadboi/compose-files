@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - "8000:8000/tcp"
+      - "9443:9443/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      VIRTUAL_HOST: portainer.local
+      VIRTUAL_PORT: 9443
+      VIRTUAL_PROTO: https
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: always
+
+volumes:
+  portainer_data:
+    external: true
+    name: portainer_data
+  nginx_default:
+    external: true
+    name: nginx_default
