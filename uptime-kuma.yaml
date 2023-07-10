@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma
+    environment:
+      - VIRTUAL_HOST=kuma.local
+      - VIRTUAL_DEST=/
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma:/app/data
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: unless-stopped
+    networks:
+      - pba-util
+
+volumes:
+  uptime-kuma:
+    name: uptime-kuma
