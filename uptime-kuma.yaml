@@ -13,8 +13,6 @@ services:
       - uptime-kuma:/app/data
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: unless-stopped
-    networks:
-      - pba-util
 
 volumes:
   uptime-kuma:
